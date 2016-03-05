@@ -92,6 +92,7 @@ class Doc:
     def get_tokens(doc):
         for line in doc:
             for token in line.split():
+                token = token.lower()
                 if Word.is_stop(token):
                     continue
                 if not Word.is_word(token):
