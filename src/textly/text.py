@@ -6,10 +6,15 @@ from nltk.corpus import words
 
 class Word:
     nonalpha_regex = r'[^a-zA-Z]'
+
     numeric_regex = r'[0-9]'
+
     html_regex = r'<.*?>'
+
     stemmer = snowball.SnowballStemmer("english")
+
     word_corpus = set(words.words())
+
     stop_words = {
         'a', 'about', 'above', 'after', 'again',
         'against', 'all', 'am', 'an', 'and', 'any',
@@ -52,6 +57,7 @@ class Word:
     def strip(word):
         return re.sub(Word.html_regex, '', word)
 
+    @staticmethod
     def sanitize(word):
         return re.sub(Word.nonalpha_regex, '', word)
 
@@ -83,6 +89,7 @@ class Word:
     def is_html(word):
         return re.match(Word.html_regex, word) is not None
 
+    @staticmethod
     def is_word(word):
         return word in Word.word_corpus
 
